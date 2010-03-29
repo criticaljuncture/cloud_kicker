@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "cloud_kicker.gemspec",
      "example/cloud_kicker.yml",
      "lib/critical_juncture/cloud_kicker.rb",
      "lib/critical_juncture/control_elements.rb",
