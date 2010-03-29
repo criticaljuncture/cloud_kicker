@@ -4,25 +4,10 @@ module Cloudkicker
     include Cloudkicker::MapLocation
     include Cloudkicker::MapBookmarking
     include Cloudkicker::MapEvents
+    include Cloudkicker::AjaxMarkers
     
     def initialize(options={})
       configure
-      map:
-        lat:                      
-        long:                     
-        map_control:              
-        map_control_type:         
-        zoom:                     
-        style_id:                 
-        bounds:                   
-        bound_zoom:               
-        enable_bookmarking:       
-        ajax_markers:             
-        ajax_url:                 
-        markers:                  
-        scroll_wheel_zoom_enabled:
-      
-      
       
       @lat                       = options.delete(:lat)                || @ck_config['map']['lat']
       @long                      = options.delete(:long)               || @ck_config['map']['long']
@@ -50,8 +35,13 @@ module Cloudkicker
     
     def to_js(map_id='map')
       js = []
+      # get the cloudmade map js
       js << <<-JS
         <script type=\"text/javascript\" src=\"#{CLOUDMADE_SRC}\"></script>
+      JS
+
+      # create the script that will create and manage the map
+      js << <<-JS
         <script type="text/javascript">
           $(document).ready(function() {
             
@@ -60,6 +50,9 @@ module Cloudkicker
             
             // create a new map object on the DOM element reference by map_id and the tile object above
             var map = new CM.Map('#{map_id}', cloudmade);
+    
+            // set up the array of added markers for use later
+            var addedMarkers = [];
     
             // set up options here like turning on or off certain map features or setting the map center
       JS
@@ -74,10 +67,14 @@ module Cloudkicker
         js << add_map_control(@map_control_type)
       end
       
+      # add listenters for events
+      js << add_events(:ajax_markers => @ajax_markers, 
+                       :enable_bookmarking => @enable_bookmarking)
+      
+      # set center of map properly 
+      # (must come after any listeners for map load - setting the center is what triggers the event it)
       js << set_map_center(@lat, @long, @zoom, @bounds, @bound_points, @bound_zoom)
       
-      js << add_map_events(:ajax_markers => @ajax_markers, 
-                           :enable_bookmarking => @enable_bookmarking)
       
       unless @ajax_markers
         @markers.each do |marker|
@@ -85,9 +82,7 @@ module Cloudkicker
         end
       end
       
-      js << '}); //end $(document).ready'
-      
-      
+      # add the functions we'll need (for events, etc)
       if @ajax_markers
         js << add_ajax_marker_functions(@ajax_url)
       end
@@ -95,6 +90,8 @@ module Cloudkicker
       if @enable_bookmarking
         js << add_bookmarking_functions
       end
+      
+      js << '}); //end $(document).ready'
       
       js << '</script>'
       js.join("\n")
