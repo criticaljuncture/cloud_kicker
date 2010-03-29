@@ -1,6 +1,6 @@
-= cloud_kicker
+= Cloud Kicker
 
-Description goes here.
+Rails abstraction layer for creating maps using the Cloudmade web framework.
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +14,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Bob Burbach. See LICENSE for details.
+Copyright (c) 2010 Critical Juncture. See LICENSE for details.

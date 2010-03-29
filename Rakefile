@@ -5,10 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "cloud_kicker"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "bob.burbach@gmail.com"
-    gem.homepage = "http://github.com/peregrinator/cloud_kicker"
+    gem.summary = 'Rails abstraction layer for creating maps using the Cloudmade web framework.'
+    gem.description = <<-EOF
+      Rails abstraction layer for creating maps using the Cloudmade web framework. Makes creating maps with custom 
+      color schemes, ajax markers and customizable marker info windows quick and easy.
+    EOF
+    gem.email = "govpulse@gmail.com"
+    gem.homepage = "http://github.com/trifecta/cloud_kicker"
     gem.authors = ["Bob Burbach"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
