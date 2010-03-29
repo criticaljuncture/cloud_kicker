@@ -5,6 +5,7 @@ module Cloudkicker
       ajax_markers       = options.delete(:ajax_markers)
       enable_bookmarking = options.delete(:enable_bookmarking)
       
+      js = []
       js << <<-JS
             /*************************/
             /* add events to the map */
@@ -17,7 +18,7 @@ module Cloudkicker
       
       js << map_drag_event(enable_bookmarking)
       
-      return js
+      return js.join('\n')
     end
     
     
@@ -38,8 +39,7 @@ module Cloudkicker
   
       js << <<-JS
             // we get markers dynamically from the server 
-            // here we set up the array of added markers and turn on the loading indicator
-            var added_markers = [];
+            // first turn on the loading indicator
             $('.mapMarkerLoader img').show();
       
             // show the map marker loading indicator and get the markers for the area shown in 
@@ -62,7 +62,7 @@ module Cloudkicker
               });
       JS
       
-      return js
+      return js.join('\n')
     end
     
   end
