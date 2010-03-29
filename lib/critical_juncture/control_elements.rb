@@ -32,8 +32,8 @@ module Cloudkicker
       
       js = <<-JS
         // create a new control position and add padding
-        var control_position = new CM.ControlPosition(#{control_position}, new CM.Size(#{padding_x}, #{padding_y}));
-        map.addControl(new #{control_type}, #{control_position});
+        var controlPosition = new CM.ControlPosition(#{control_position}, new CM.Size(#{padding_x}, #{padding_y}));
+        map.addControl(new #{control_type}, controlPosition);
       JS
       
       return js
