@@ -11,10 +11,10 @@ module Cloudkicker
     def add_marker_function
       <<-JS
       function add_markers(markers) {
-        $.each(added_markers, function(i, added_marker){
+        $.each(addedMarkers, function(i, added_marker){
           map.removeOverlay(added_marker);
         });
-        added_markers = [];
+        addedMarkers = [];
       
         $.each(markers, function(i, marker){
           var myMarkerLatLng = new CM.LatLng(marker.lat,marker.lng);
@@ -49,7 +49,7 @@ module Cloudkicker
           });
         
         
-          added_markers.push(myMarker);
+          addedMarkers.push(myMarker);
           map.addOverlay(myMarker);
         });
       

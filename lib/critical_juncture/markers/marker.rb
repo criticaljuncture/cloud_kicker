@@ -1,5 +1,6 @@
 module Cloudkicker
   class Marker
+    
     def initialize(options={})
       raise 'Map is required'  unless options[:map]
       raise 'Lat is required'  unless options[:lat]
