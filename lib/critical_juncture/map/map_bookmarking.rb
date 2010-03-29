@@ -1,4 +1,4 @@
-module CloudKicker
+module Cloudkicker
   module MapBookmarking
     def add_bookmarking_functions
       add_location_to_anchor
