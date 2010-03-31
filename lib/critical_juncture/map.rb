@@ -29,8 +29,8 @@ module Cloudkicker
     end
     
     def configure
-      app_root = RAILS_ROOT if defined?(RAILS_ROOT)
-      @ck_config   = YAML.load( File.open("#{app_root}/config/cloud_kicker.yml", 'r') )
+      app_root   = RAILS_ROOT if defined?(RAILS_ROOT)
+      @ck_config = YAML.load( File.open("#{app_root}/config/cloud_kicker.yml", 'r') )
     end
     
     def to_js(map_id='map')

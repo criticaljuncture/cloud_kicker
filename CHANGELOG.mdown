@@ -1,0 +1,4 @@
+== 0.0.1 (March 30, 2010)
+
+* Initial Creation of Cloud Kicker gem [Bob Burbach - github.com/peregrinator]
+* Basic map creation with ajax call backs. See README for info on completeness (ie it's not! :) [Bob Burbach - github.com/peregrinator]

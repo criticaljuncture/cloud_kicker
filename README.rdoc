@@ -1,8 +1,10 @@
-= NOTE: currently having problems with pre gems - bumping to 0.0.1 but consider it pre and very buggy :)
-
 = Cloud Kicker
 
 Rails abstraction layer for creating maps using the Cloudmade web framework.
+
+== Usage
+
+This gem is still in progress and not all features have been implemented. Still relies on code that is part of the All Your Cells website (allyourcells.com : code at github.com/trifecta/allyourcells). Particularly the marker tips are reliant on js template code. All this is in the process of being moved into this gem.
 
 == Note on Patches/Pull Requests
  
