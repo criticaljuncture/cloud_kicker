@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bob Burbach"]
-  s.date = %q{2010-03-28}
+  s.date = %q{2010-03-30}
   s.description = %q{      Rails abstraction layer for creating maps using the Cloudmade web framework. Makes creating maps with custom 
       color schemes, ajax markers and customizable marker info windows quick and easy.
 }
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "CHANGELOG.mdown",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
