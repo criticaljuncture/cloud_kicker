@@ -11,7 +11,7 @@ begin
       color schemes, ajax markers and customizable marker info windows quick and easy.
     EOF
     gem.email = "govpulse@gmail.com"
-    gem.homepage = "http://github.com/trifecta/cloud_kicker"
+    gem.homepage = "http://github.com/criticaljuncture/cloud_kicker"
     gem.authors = ["Bob Burbach"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings

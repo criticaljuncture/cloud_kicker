@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_cloud_kicker.rb"
   ]
-  s.homepage = %q{http://github.com/trifecta/cloud_kicker}
+  s.homepage = %q{http://github.com/criticaljuncture/cloud_kicker}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
