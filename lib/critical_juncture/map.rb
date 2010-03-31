@@ -25,7 +25,7 @@ module Cloudkicker
       @ajax_markers              = options.delete(:ajax_markers)       || @ck_config['map']['markers']['ajax']['enabled']
       @ajax_url                  = options.delete(:ajax_url)           || @ck_config['map']['markers']['ajax']['url']
       @markers                   = []
-      @disable_scroll_wheel_zoom = options.delete(:disable_scroll_wheel_zoom) || @ck_config['map']['scroll_wheel_zoom']['enabled']
+      @scroll_wheel_zoom_enabled = options.delete(:scroll_wheel_zoom_enabled) || @ck_config['map']['scroll_wheel_zoom']['enabled']
     end
     
     def configure
@@ -40,9 +40,15 @@ module Cloudkicker
         <script type=\"text/javascript\" src=\"#{CLOUDMADE_SRC}\"></script>
       JS
 
+      js << '<script type="text/javascript">'
+      
+      js << <<-JS
+        // set up the array of added markers for use later
+        var addedMarkers = [];
+      JS
+
       # create the script that will create and manage the map
       js << <<-JS
-        <script type="text/javascript">
           $(document).ready(function() {
             
             // create a new cloudmade tile object with our api key and the map style we want
@@ -51,13 +57,10 @@ module Cloudkicker
             // create a new map object on the DOM element reference by map_id and the tile object above
             var map = new CM.Map('#{map_id}', cloudmade);
     
-            // set up the array of added markers for use later
-            var addedMarkers = [];
-    
             // set up options here like turning on or off certain map features or setting the map center
       JS
       
-      if @disableScrollWheelZoom
+      unless @scroll_wheel_zoom_enabled
         js << <<-JS   
             map.disableScrollWheelZoom();
         JS
@@ -82,6 +85,8 @@ module Cloudkicker
         end
       end
       
+      js << '}); //end $(document).ready'
+      
       # add the functions we'll need (for events, etc)
       if @ajax_markers
         js << add_ajax_marker_functions(@ajax_url)
@@ -90,8 +95,6 @@ module Cloudkicker
       if @enable_bookmarking
         js << add_bookmarking_functions
       end
-      
-      js << '}); //end $(document).ready'
       
       js << '</script>'
       js.join("\n")
